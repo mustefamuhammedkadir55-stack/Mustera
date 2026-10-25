@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#081426">
+  <meta name="description" content="Mustefa's personal portfolio — web development, Python and technology.">
+  <title>Mustefa | Developer Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #081426;
+      --panel: #101f35;
+      --blue: #38bdf8;
+      --purple: #818cf8;
+      --text: #edf5ff;
+      --muted: #a5b4cc;
+      --border: rgba(148, 163, 184, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 20, 38, .92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .language, .menu-btn {
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+    }
+
+    .menu-btn { display: none; }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      padding: 85px 0;
+      background:
+        radial-gradient(ellipse at 85% 25%, #123b5a 0, transparent 42%),
+        radial-gradient(ellipse at 10% 90%, #1e1b4b 0, transparent 35%);
+    }
+
+    .hero-content { max-width: 760px; }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid #164e63;
+      border-radius: 30px;
+      color: var(--blue);
+      background: rgba(56, 189, 248, .08);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero p, .section-text {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 650px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #061321;
+      border-color: var(--blue);
+      font-weight: 750;
+    }
+
+    section { padding: 85px 0; }
+
+    .section-heading {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 24px;
+      background: linear-gradient(145deg, var(--panel), #0b182b);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin: 12px 0 8px;
+    }
+
+    .card p { color: var(--muted); }
+
+    .icon { font-size: 1.8rem; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 8px;
+      color: #bae6fd;
+      background: #102d46;
+      border: 1px solid #164e63;
+      font-size: .85rem;
+    }
+
+    .about-box, .contact-box {
+      padding: clamp(22px, 5vw, 42px);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 20px;
+    }
+
+    .contact-box { text-align: center; }
+
+    .contact-box p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 12px auto 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 10px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s, transform .7s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 760px) {
+      .menu-btn { display: inline-block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 22px 5%;
+        background: #0b192d;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open { display: flex; }
+      .grid { grid-template-columns: 1fr; }
+      .hero { min-height: 70vh; padding: 65px 0; }
+      h1 { letter-spacing: -1px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">Mustefa<span>.</span></a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home" data-en="Home" data-am="መነሻ">Home</a>
+        <a href="#about" data-en="About" data-am="ስለ እኔ">About</a>
+        <a href="#skills" data-en="Skills" data-am="ክህሎቶች">Skills</a>
+        <a href="#projects" data-en="Projects" data-am="ፕሮጀክቶች">Projects</a>
+        <a href="#contact" data-en="Contact" data-am="አግኙኝ">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="language" id="languageBtn"
+          aria-label="Change language">አማ</button>
+        <button class="menu-btn" id="menuBtn"
+          aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content reveal">
+        <span class="eyebrow"
+          data-en="Welcome to my portfolio"
+          data-am="ወደ የግል ድረ-ገጼ እንኳን በደህና መጡ">
+          Welcome to my portfolio
+        </span>
+
+        <h1>
+          <span data-en="Hi, I'm" data-am="ሰላም፣ እኔ">Hi, I'm</span>
+          <span class="gradient">Mustefa</span>
+          <br>
+          <span data-en="Future Developer" data-am="የወደፊት ዴቨሎፐር">
+            Future Developer
+          </span>
+        </h1>
+
+        <p
+          data-en="I'm learning web development, Python and technology. I enjoy turning ideas into useful digital projects."
+          data-am="ዌብ ዴቨሎፕመንት፣ Python እና ቴክኖሎጂ እየተማርኩ ነው። ሀሳቦችን ወደ ጠቃሚ ዲጂታል ፕሮጀክቶች መቀየር እወዳለሁ።">
+          I'm learning web development, Python and technology. I enjoy
+          turning ideas into useful digital projects.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects"
+            data-en="Explore my work →" data-am="ፕሮጀክቶቼን ይመልከቱ →">
+            Explore my work →
+          </a>
+          <a class="btn" href="#contact"
+            data-en="Contact me" data-am="አግኙኝ">Contact me</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container reveal">
+        <h2 class="section-heading">
+          <span data-en="About" data-am="ስለ">About</span>
+          <span class="gradient" data-en="Me" data-am="እኔ">Me</span>
+        </h2>
+
+        <div class="about-box">
+          <p class="section-text"
+            data-en="Hello! I'm Mustefa. I'm building my skills in web development and programming. I believe in learning step by step, practicing regularly and creating projects that solve real problems."
+            data-am="ሰላም! እኔ Mustefa ነኝ። በዌብ ዴቨሎፕመንት እና በፕሮግራሚንግ ክህሎቴን እያዳበርኩ ነው። በደረጃ በደረጃ መማር፣ በተደጋጋሚ መለማመድ እና ተግባራዊ ችግሮችን የሚፈቱ ፕሮጀክቶችን መሥራት አምናለሁ።">
+            Hello! I'm Mustefa. I'm building my skills in web development
+            and programming. I believe in learning step by step, practicing
+            regularly and creating projects that solve real problems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container reveal">
+        <h2 class="section-heading">
+          <span data-en="My" data-am="የእኔ">My</span>
+          <span class="gradient" data-en="Skills" data-am="ክህሎቶች">Skills</span>
+        </h2>
+        <p class="section-intro"
+          data-en="Technologies I'm learning and practicing."
+          data-am="እየተማርኳቸው እና እየተለማመድኳቸው ያሉ ቴክኖሎጂዎች።">
+          Technologies I'm learning and practicing.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon">🌐</div>
+            <h3>HTML</h3>
+            <p data-en="Building the structure of websites."
+              data-am="የድረ-ገጾችን መዋቅር መገንባት።">
+              Building the structure of websites.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎨</div>
+            <h3>CSS</h3>
+            <p data-en="Creating responsive layouts and visual designs."
+              data-am="የሚያምሩ እና ለተለያዩ ስክሪኖች የሚስማሙ ዲዛይኖችን መሥራት።">
+              Creating responsive layouts and visual designs.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">⚡</div>
+            <h3>JavaScript</h3>
+            <p data-en="Adding interaction and dynamic features."
+              data-am="ለድረ-ገጽ መስተጋብር እና ተለዋዋጭ ባህሪያትን መጨመር።">
+              Adding interaction and dynamic features.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🐍</div>
+            <h3>Python</h3>
+            <p data-en="Learning programming and automation basics."
+              data-am="የፕሮግራሚንግ እና አውቶሜሽን መሠረቶችን መማር።">
+              Learning programming and automation basics.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🤖</div>
+            <h3>Telegram Bots</h3>
+            <p data-en="Exploring how bots respond to commands."
+              data-am="ለትእዛዞች ምላሽ የሚሰጡ Telegram Bot-ዎችን መማር።">
+              Exploring how bots respond to commands.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📱</div>
+            <h3>Termux & GitHub</h3>
+            <p data-en="Practicing development tools on mobile."
+              data-am="በሞባይል ላይ የዴቨሎፕመንት መሣሪያዎችን መለማመድ።">
+              Practicing development tools on mobile.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container reveal">
+        <h2 class="section-heading">
+          <span data-en="My" data-am="የእኔ">My</span>
+          <span class="gradient"
+            data-en="Projects" data-am="ፕሮጀክቶች">Projects</span>
+        </h2>
+
+        <p class="section-intro"
+          data-en="A few projects I'm exploring and building."
+          data-am="እየተማርኳቸው እና እየገነባኋቸው ያሉ ፕሮጀክቶች።">
+          A few projects I'm exploring and building.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3 data-en="Personal Portfolio" data-am="የግል Portfolio">
+              Personal Portfolio
+            </h3>
+            <p data-en="A responsive website to introduce myself and my work."
+              data-am="ስለ እኔ እና ስለ ሥራዎቼ የሚያስተዋውቅ ድረ-ገጽ።">
+              A responsive website to introduce myself and my work.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon">🤖</div>
+            <h3 data-en="Telegram Bot" data-am="Telegram Bot">
+              Telegram Bot
+            </h3>
+            <p data-en="A learning project exploring automated bot replies."
+              data-am="በራስ-ሰር ምላሽ የሚሰጥ Bot ለመማር የሚያግዝ ፕሮጀክት።">
+              A learning project exploring automated bot replies.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Telegram API</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon">✨</div>
+            <h3 data-en="Future Project" data-am="የወደፊት ፕሮጀክት">
+              Future Project
+            </h3>
+            <p data-en="A space for my next idea. More projects coming soon!"
+              data-am="ለሚቀጥለው ሀሳቤ የተዘጋጀ ቦታ። ተጨማሪ ፕሮጀክቶች በቅርቡ!">
+              A space for my next idea. More projects coming soon!
+            </p>
+            <div class="tags">
+              <span class="tag">Coming soon</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="contact-box">
+          <h2 class="section-heading">
+            <span data-en="Let's" data-am="እን">Let's</span>
+            <span class="gradient"
+              data-en="Connect" data-am="ተገናኝ">Connect</span>
+          </h2>
+          <p
+            data-en="Want to discuss technology or a project? You can find me on GitHub."
+            data-am="ስለ ቴክኖሎጂ ወይም ፕሮጀክት መወያየት ትፈልጋለህ? GitHub ላይ ልታገኘኝ ትችላለህ።">
+            Want to discuss technology or a project? You can find me on GitHub.
+          </p>
+
+          <!-- Replace YOUR-USERNAME with your GitHub username -->
+          <div class="buttons" style="justify-content:center">
+            <a class="btn btn-primary"
+              href="https://github.com/YOUR-USERNAME"
+              target="_blank" rel="noopener noreferrer"
+              data-en="My GitHub ↗" data-am="GitHub ገጼ ↗">
+              My GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Mustefa.
+      <span data-en="Built with curiosity and code."
+        data-am="በጉጉት እና በኮድ የተሠራ።">
+        Built with curiosity and code.
+      </span>
+    </p>
+  </footer>
+
+  <script>
+    const languageBtn = document.getElementById("languageBtn");
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    let currentLanguage = "en";
+
+    function setLanguage(language) {
+      currentLanguage = language;
+      document.documentElement.lang = language;
+
+      document.querySelectorAll("[data-en]").forEach(element => {
+        element.textContent = element.dataset[language];
+      });
+
+      languageBtn.textContent = language === "en" ? "አማ" : "EN";
+      document.title = language === "en"
+        ? "Mustefa | Developer Portfolio"
+        : "Mustefa | የዴቨሎፐር Portfolio";
+    }
+
+    languageBtn.addEventListener("click", () => {
+      setLanguage(currentLanguage === "en" ? "am" : "en");
+    });
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
